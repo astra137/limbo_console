@@ -1,10 +1,13 @@
 @tool
 extends EditorPlugin
 
+const Settings := preload("res://addons/limbo_console/settings.gd")
 const ConsoleOptions := preload("res://addons/limbo_console/console_options.gd")
 const ConfigMapper := preload("res://addons/limbo_console/config_mapper.gd")
 
 func _enter_tree() -> void:
+	Settings.setup()
+
 	add_autoload_singleton("LimboConsole", "res://addons/limbo_console/limbo_console.gd")
 
 	# Sync config file (create if not exists)

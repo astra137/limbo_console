@@ -12,6 +12,8 @@ const CommandEntry := preload("res://addons/limbo_console/command_entry.gd")
 const ConfigMapper := preload("res://addons/limbo_console/config_mapper.gd")
 const ConsoleOptions := preload("res://addons/limbo_console/console_options.gd")
 const Util := preload("res://addons/limbo_console/util.gd")
+const Settings := preload("res://addons/limbo_console/settings.gd")
+
 
 ## If false, prevents console from being shown. Commands can still be executed from code.
 var enabled: bool = true:
@@ -810,7 +812,7 @@ func _show_console() -> void:
 		_control.show()
 		_control_block.show()
 		_was_already_paused = get_tree().paused
-		if not _was_already_paused:
+		if not _was_already_paused and Settings.pauses_while_opened():
 			get_tree().paused = true
 		_previous_gui_focus = get_viewport().gui_get_focus_owner()
 		_entry.grab_focus()
